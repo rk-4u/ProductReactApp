@@ -36,7 +36,7 @@ useEffect(() => {
 
   const handleSendMessage = async () => {
     try {
-      await axios.post("http://localhost:3001/addProducts",{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
+      await axios.post("https://product-node-app.vercel.app/addProducts",{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
     } catch (error) {
       console.error('Message sending failed:', error);
     }
@@ -44,7 +44,7 @@ useEffect(() => {
  
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3001/deleteProduct/${productId}`);
+      await axios.delete(`https://product-node-app.vercel.app/deleteProduct/${productId}`);
       window.location.reload();
       // After successful deletion, you may want to refresh the product list or update the state.
     } catch (error) {
@@ -100,6 +100,7 @@ useEffect(() => {
       <td> <img
         width={"100%"} height="50px"
           src={product.thumbnail}
+          alt='productImg'
           className="card-img-top"/>
       </td>
       <td>

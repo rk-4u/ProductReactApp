@@ -22,7 +22,7 @@ function Popup() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get(`http://localhost:3001/productsList/${productId}`);
+          const response = await axios.get(`https://product-node-app.vercel.app/productsList/${productId}`);
           setMsg(response.data);
           setId(response.data.id || ""); 
           setTitle(response.data.title || ""); 
@@ -46,7 +46,7 @@ function Popup() {
       
       const handleUpdate = async () => {
         try {
-          await axios.put(`http://localhost:3001/updateProduct/${productId}`,{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
+          await axios.put(`https://product-node-app.vercel.app/updateProduct/${productId}`,{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
           window.location.reload();
         } catch (error) {
           console.error('Product updation failed:', error);
