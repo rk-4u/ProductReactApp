@@ -36,7 +36,8 @@ useEffect(() => {
 
   const handleSendMessage = async () => {
     try {
-      await axios.post("https://product-node-app.vercel.app/addProducts",{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
+      console.log('Sending data:', { id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail });
+      await axios.post(`https://product-node-app.vercel.app/addProducts`,{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
     } catch (error) {
       console.error('Message sending failed:', error);
     }
@@ -117,7 +118,7 @@ useEffect(() => {
 })}</table>
 
 <>
-  <div className="input-group fixed-bottom mb-3">
+  <div className="input-group mb-3">
           <input type="text" value={id} onChange={(e) => setId(e.target.value)} className="form-control floatingInput"  placeholder="id"/>
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="form-control floatingInput"  placeholder="title"/>
           <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} className="form-control floatingInput"  placeholder="description"/>
