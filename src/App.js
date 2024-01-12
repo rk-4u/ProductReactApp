@@ -16,8 +16,7 @@ function App() {
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [thumbnail, setThumbnail] = useState("");
-
-
+  const [refresh, setRefresh] = useState(false)
 
 useEffect(() => {
     axios
@@ -31,13 +30,14 @@ useEffect(() => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [refresh]);
 
 
   const handleSendMessage = async () => {
     try {
       console.log('Sending data:', { id, title, description, price, discountPercentage, rating, stock, brand, category, thumbnail });
       await axios.post(`https://product-node-app.vercel.app/addProducts`,{id , title, description ,price, discountPercentage, rating, stock, brand, category, thumbnail});
+      setRefresh(!refresh)
     } catch (error) {
       console.error('Message sending failed:', error);
     }
@@ -46,21 +46,13 @@ useEffect(() => {
   const handleDelete = async (productId) => {
     try {
       await axios.delete(`https://product-node-app.vercel.app/deleteProduct/${productId}`);
-      window.location.reload();
+      setRefresh(!refresh)
       // After successful deletion, you may want to refresh the product list or update the state.
     } catch (error) {
       console.error('Product deletion failed:', error);
     }
   };
 
-
-    const handleRefresh = () => {
-      window.location.reload();
-    }
-    const handleButtonClick = () => {
-      handleSendMessage();
-      handleRefresh();
-    };
   
   
   return(
@@ -129,7 +121,7 @@ useEffect(() => {
           <input type="text" value={brand} onChange={(e) => setBrand(e.target.value)} className="form-control floatingInput"  placeholder="brand"/>
           <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="form-control floatingInput"  placeholder="category"/>
           <input type="text" value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} className="form-control floatingInput"  placeholder="thumbnail"/>
-          <button onClick={handleButtonClick}className="btn btn-primary" type="submit"> Send </button>
+          <button onClick={handleSendMessage}className="btn btn-primary" type="submit"> Send </button>
       </div>
       <Outlet/>
   </>
