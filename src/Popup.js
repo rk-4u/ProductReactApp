@@ -68,10 +68,10 @@ function Popup() {
           <input type="text" value={thumbnail} onChange={(e) => setThumbnail(e.target.value)} className="form-control m-1 floatingInput"  placeholder="thumbnail"/>
       </div>
       <div className='d-flex justify-content-end'>
-          <Link to="/">
+          <Link to="/Developers">
           <button onClick={handleUpdate} className="btn m-2 btn-outline-success" type="submit"> Save </button>
           </Link>
-          <Link to="/">
+          <Link to="/Developers">
             <button className="btn m-2 btn-outline-danger" type="button">Cancle</button>
           </Link>
       </div>    

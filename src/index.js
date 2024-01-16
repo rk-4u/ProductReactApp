@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Navbar from './Navbar';
 import Popup from './Popup';
+import Developers from './Developers';
+import Detail from './Detail';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -10,8 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App/>}>
-          <Route path='/Popup/:productId' element={<Popup/>}/>
+        <Route path='/' element={<Navbar/>}>
+          <Route path='/' element={<App/>}/>
+          <Route path='/Detail/:productId' element={<Detail/>}/>
+          <Route path='/Developers' element={<Developers/>}/>
+          <Route path='/Developers/:productId' element={<Popup/>}/>
         </Route>
       </Routes>
   </BrowserRouter>
